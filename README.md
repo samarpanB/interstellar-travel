@@ -1,1 +1,40 @@
-# interstellar-travel
+# Interstellar-travel
+
+## Technology and design decisions
+
+1. Spring Boot used at API end.
+2. Hibernate used as ORM tool.
+3. Derby DB used.
+4. Spring Security used with basic auth for now. Basic Auth added for now with a fixed user credentials. Credentials can be found in application.properties.
+5. JUnit used for unit testing at API end.
+6. Front end codebase kept separate for maintaining separation of concerns and better management of code.
+7. Angular 8 used at front end.
+8. [Nebular](https://akveo.github.io/nebular/ "Nebular") used as a front end theme for UI implementation.
+9. CORS enabled at API end in Spring security to facilitate API calling from front end. Allowed domains setup from application.properties.
+10. Shortest path algorithm written as an independent utility which is agnostic of node entity types. It's completely based on Vertex, Edge and Graph POJO classes. This allows reusability of same algorithm to any other entity than Planets in future .
+11. An adapter service created which works on converting Planet/Route to Vertex/Edge.
+12. Login feature added both at front end and back end. A simple login API returning basic auth token after successful verification.
+13. Data setup done using excel upload feature. File uploaded from front end and stored/parsed at backend to seed data into DB.
+14. Both REST as well as SOAP API created to get shortest path between planets.
+
+## Assumptions
+
+1. Every new excel upload will mean new data seed. So old data will be wiped off.
+2. Route has foreign key mapping with Planet for source and destination column. So, any Route with a Planet which is not there in Planet table will be ignored while data seed from file.
+3. DELETE and PUT operation for Planets is not required from front end.
+4. Creation of data only happen via excel upload.
+
+## Future Considerations
+
+1. Better exeptional handling in code.
+2. More unit test case coverage needed in future.
+3. Basic Auth should be replaced with OAuth + JWT strategy.
+4. Better Java docs would help.
+
+## API Setup Guide
+
+Refer [here](https://github.com/samarpanB/interstellar-travel/blob/master/interstellar-travel-api/README.md "here").
+
+## UI Setup Guide
+
+Refer [here](https://github.com/samarpanB/interstellar-travel/blob/master/interstellar-travel-ui/README.md "here").

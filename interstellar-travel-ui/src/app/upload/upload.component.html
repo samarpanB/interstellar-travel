@@ -1,0 +1,12 @@
+<nb-card>
+  <nb-card-header>Upload Planets & Routes</nb-card-header>
+  <nb-card-body>
+    <input
+      name="fileUpload"
+      type="file"
+      value="Select excel file"
+      accept=".xls,.xlsx"
+      (change)="onFileSelect($event)"
+    />
+  </nb-card-body>
+</nb-card>

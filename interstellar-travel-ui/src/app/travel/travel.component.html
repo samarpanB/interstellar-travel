@@ -1,0 +1,35 @@
+<nb-card>
+  <nb-card-header>Find Shortest Path</nb-card-header>
+  <nb-card-body>
+    <form (ngSubmit)="findPath()" #form="ngForm" style="margin-bottom: 20px;">
+      <nb-select
+        name="sourcePlanet"
+        placeholder="Select Source Planet"
+        [(ngModel)]="selectedSource"
+        style="margin-right: 10px;"
+      >
+        <nb-option *ngFor="let planet of planets" value="{{ planet.name }}">{{
+          planet.name
+        }}</nb-option>
+      </nb-select>
+      <nb-select
+        name="destPlanet"
+        placeholder="Select Destination Planet"
+        [(ngModel)]="selectedDest"
+        style="margin-right: 10px;"
+      >
+        <nb-option *ngFor="let planet of planets" value="{{ planet.name }}">{{
+          planet.name
+        }}</nb-option>
+      </nb-select>
+
+      <input nbButton type="submit" value="Find Path" />
+    </form>
+    <div>
+      <ng2-smart-table
+        [settings]="tableSettings"
+        [source]="data"
+      ></ng2-smart-table>
+    </div>
+  </nb-card-body>
+</nb-card>
