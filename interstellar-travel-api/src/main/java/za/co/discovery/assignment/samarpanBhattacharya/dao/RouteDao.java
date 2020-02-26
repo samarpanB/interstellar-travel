@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import za.co.discovery.assignment.samarpanBhattacharya.model.Route;
 
-public interface RouteDao extends CrudRepository<Route, Integer> {
+public interface RouteDao extends CrudRepository<Route, Integer>, RouteDaoExtended {
 
 }

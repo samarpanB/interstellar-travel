@@ -25,11 +25,10 @@ import za.co.discovery.assignment.samarpanBhattacharya.model.Route;
 import za.co.discovery.assignment.samarpanBhattacharya.service.util.Edge;
 import za.co.discovery.assignment.samarpanBhattacharya.service.util.Graph;
 import za.co.discovery.assignment.samarpanBhattacharya.service.util.ShortestPathAlgorithm;
-import za.co.discovery.assignment.samarpanBhattacharya.service.util.ShortestPathAlgorithmImpl;
 import za.co.discovery.assignment.samarpanBhattacharya.service.util.Vertex;
 
 @Service("interstellarTravelService")
-public class InterstellarTravelServiceImpl implements InterstellarTravelService {
+class InterstellarTravelServiceImpl implements InterstellarTravelService {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	private final ListeningExecutorService service;
@@ -39,6 +38,7 @@ public class InterstellarTravelServiceImpl implements InterstellarTravelService 
 
 	@Autowired
 	private PlanetDao planetDao;
+
 
 	public InterstellarTravelServiceImpl() {
 		service = MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(10));
@@ -93,7 +93,7 @@ public class InterstellarTravelServiceImpl implements InterstellarTravelService 
 				.findFirst().get();
 
 			Graph graph = new Graph(vertices, edges);
-			ShortestPathAlgorithm dijkstra = new ShortestPathAlgorithmImpl(graph);
+			ShortestPathAlgorithm dijkstra = new ShortestPathAlgorithm(graph);
 			LinkedList<Vertex> path = dijkstra.execute(sourceVertex, destVertex);
 
 			// Now convert vertex back to planet

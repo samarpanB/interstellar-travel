@@ -1,5 +1,7 @@
 package za.co.discovery.assignment.samarpanBhattacharya.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -14,28 +16,32 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.server.ResponseStatusException;
 
 import za.co.discovery.assignment.samarpanBhattacharya.model.Planet;
+import za.co.discovery.assignment.samarpanBhattacharya.model.Route;
 
 @Repository
 @Transactional
-class PlanetDaoExtendedImpl implements PlanetDaoExtended {
+class RouteDaoExtendedImpl implements RouteDaoExtended {
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	@Override
-	public Planet getPlanetByNodeName(String node) {
+	public List<Route> getRoutesByPlanet(Planet planet) {
 		Session session = entityManager.unwrap(Session.class);
 		CriteriaBuilder cb = session.getCriteriaBuilder();
-		CriteriaQuery<Planet> cq = cb.createQuery(Planet.class);
+		CriteriaQuery<Route> cq = cb.createQuery(Route.class);
 
-		Root<Planet> root = cq.from(Planet.class);
-		cq.select(root).where(cb.like(root.get("node"), node));
-		Planet planetEntity;
+		Root<Route> root = cq.from(Route.class);
+		cq.select(root).where(cb.or((cb.equal(root.get("source"), planet.getId())), (cb.equal(root.get("destination"), planet.getId()))));
+		List<Route> routeList = null;
 		try {
-			planetEntity = session.createQuery(cq).uniqueResult();
+			routeList = session.createQuery(cq).getResultList();
+			if (routeList.size() == 0) {
+				routeList = null;
+			}
 		} catch (DataAccessException e) {
 			throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, e.getMessage());
 		}
-		return planetEntity;
+		return routeList;
 	}
 }

@@ -1,9 +1,5 @@
 package za.co.discovery.assignment.samarpanBhattacharya.service.util;
 
-import za.co.discovery.assignment.samarpanBhattacharya.service.util.ShortestPathAlgorithmImpl;
-import za.co.discovery.assignment.samarpanBhattacharya.service.util.Vertex;
-import za.co.discovery.assignment.samarpanBhattacharya.service.util.Graph;
-import za.co.discovery.assignment.samarpanBhattacharya.service.util.Edge;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -41,7 +37,7 @@ public class ShortestPathAlgorithmTests {
 
 		// Lets check from location Loc_1 to Loc_10
 		Graph graph = new Graph(nodes, edges);
-		ShortestPathAlgorithmImpl dijkstra = new ShortestPathAlgorithmImpl(graph);
+		ShortestPathAlgorithm dijkstra = new ShortestPathAlgorithm(graph);
 		LinkedList<Vertex> path = dijkstra.execute(nodes.get(0), nodes.get(10));
 
 		Assert.assertNotNull(path);

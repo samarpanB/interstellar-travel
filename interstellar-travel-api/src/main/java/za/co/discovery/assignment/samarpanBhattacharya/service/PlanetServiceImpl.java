@@ -16,7 +16,7 @@ import za.co.discovery.assignment.samarpanBhattacharya.model.Planet;
 import za.co.discovery.assignment.samarpanBhattacharya.model.Route;
 
 @Service
-public class PlanetServiceImpl implements PlanetService {
+class PlanetServiceImpl implements PlanetService {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 

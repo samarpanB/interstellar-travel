@@ -33,7 +33,7 @@ import za.co.discovery.assignment.samarpanBhattacharya.model.Planet;
 import za.co.discovery.assignment.samarpanBhattacharya.model.Route;
 
 @Service("fileService")
-public class FileServiceImpl implements FileService {
+class FileServiceImpl implements FileService {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	private final ListeningExecutorService service;
