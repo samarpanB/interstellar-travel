@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import za.co.discovery.assignment.samarpanBhattacharya.model.Planet;
 
 @Repository
-public interface PlanetDao extends CrudRepository<Planet, Integer> {
+public interface PlanetDao extends CrudRepository<Planet, Integer>, PlanetDaoExtended {
 
 }

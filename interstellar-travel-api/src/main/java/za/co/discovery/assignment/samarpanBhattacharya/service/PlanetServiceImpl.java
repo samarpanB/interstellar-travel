@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import za.co.discovery.assignment.samarpanBhattacharya.dao.PlanetDao;
-import za.co.discovery.assignment.samarpanBhattacharya.dao.PlanetDaoImpl;
 import za.co.discovery.assignment.samarpanBhattacharya.dao.RouteDao;
 import za.co.discovery.assignment.samarpanBhattacharya.model.Planet;
 import za.co.discovery.assignment.samarpanBhattacharya.model.Route;
@@ -23,9 +22,6 @@ public class PlanetServiceImpl implements PlanetService {
 
 	@Autowired
 	private PlanetDao planetDao;
-
-	@Autowired
-	private PlanetDaoImpl planetDaoImpl;
 
 	@Autowired
 	private RouteService routeService;
@@ -58,7 +54,7 @@ public class PlanetServiceImpl implements PlanetService {
 
 	@Override
 	public Planet getPlanetByNodeName(String node) {
-		Planet planet = planetDaoImpl.getPlanetByNodeName(node);
+		Planet planet = planetDao.getPlanetByNodeName(node);
 		return planet;
 	}
 

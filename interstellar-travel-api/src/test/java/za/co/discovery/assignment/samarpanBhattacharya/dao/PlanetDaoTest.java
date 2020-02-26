@@ -5,7 +5,6 @@
  */
 package za.co.discovery.assignment.samarpanBhattacharya.dao;
 
-import za.co.discovery.assignment.samarpanBhattacharya.dao.PlanetDaoImpl;
 import za.co.discovery.assignment.samarpanBhattacharya.dao.PlanetDao;
 import java.util.List;
 
@@ -25,9 +24,6 @@ public class PlanetDaoTest {
 	@Autowired
 	PlanetDao planetDao;
 
-	@Autowired
-	PlanetDaoImpl planetDaoImpl;
-
 	@Test
 	public void testPersistence() {
 		// given
@@ -39,7 +35,7 @@ public class PlanetDaoTest {
 		planetDao.save(p);
 
 		// then
-		Planet p2 = planetDaoImpl.getPlanetByNodeName(PLANET_NODE);
+		Planet p2 = planetDao.getPlanetByNodeName(PLANET_NODE);
 		Assert.assertNotNull(p2);
 		Assert.assertEquals(PLANET_NAME, p2.getName());
 		Assert.assertEquals(PLANET_NODE, p2.getNode());
@@ -55,13 +51,13 @@ public class PlanetDaoTest {
 
 		planetDao.save(p);
 
-		Planet planet = planetDaoImpl.getPlanetByNodeName(PLANET_NODE);
+		Planet planet = planetDao.getPlanetByNodeName(PLANET_NODE);
 		String planetName = "NewPlanet";
 		planet.setName(planetName);
 
 		planetDao.save(planet);
 
-		Planet p2 = planetDaoImpl.getPlanetByNodeName(PLANET_NODE);
+		Planet p2 = planetDao.getPlanetByNodeName(PLANET_NODE);
 		Assert.assertEquals(planetName, p2.getName());
 
 		planetDao.deleteAll();
@@ -89,12 +85,12 @@ public class PlanetDaoTest {
 		p.setNode(PLANET_NODE);
 		planetDao.save(p);
 
-		Planet p1 = planetDaoImpl.getPlanetByNodeName(PLANET_NODE);
+		Planet p1 = planetDao.getPlanetByNodeName(PLANET_NODE);
 		Assert.assertNotNull(p1);
 
 		planetDao.delete(p1);
 
-		Planet p2 = planetDaoImpl.getPlanetByNodeName(PLANET_NODE);
+		Planet p2 = planetDao.getPlanetByNodeName(PLANET_NODE);
 		Assert.assertNull(p2);
 	}
 }
